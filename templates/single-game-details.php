@@ -40,9 +40,9 @@ $screenshots_data = json_decode(wp_remote_retrieve_body($screenshots_response));
 ?>
 <div id="primary" class="content-area">
     <main id="main" class="site-main">
-        <div class="single-game-details dark text-white">
+        <div class="single-game-details bg-primary dark text-white">
   <?php if ($background_image): ?>
-        <div class="game-banner position-relative dark" style="height: 50vh;" >
+        <div class="game-banner position-relative bg-primary  dark" style="height: 50vh;" >
                <img class="game-banner-img vh-100 h-100 opacity-50 object-fit-cover img-scroll-hero" src="<?php echo $background_image; ?>"  alt="British Esports <?php echo $title; ?>" /> 
              
   <h1 class="game-title position-absolute p-4 top-50 start-0"><?php echo $title; ?></h1>
@@ -51,7 +51,7 @@ $screenshots_data = json_decode(wp_remote_retrieve_body($screenshots_response));
         <div class="container-fluid">
             <div class="row align-items-center">
                 <div class="col-md-12 col-lg-5">
-                    <div class="game-details fade-in shadow-lg position-relative dark p-4">
+                    <div class="game-details fade-in bg-primary  shadow-lg position-relative dark p-4">
                                <?php if ($rating > 4.5) { ?>
  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
   <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
@@ -134,4 +134,3 @@ $screenshots_data = json_decode(wp_remote_retrieve_body($screenshots_response));
 
 <?php
 get_footer();
-?>
