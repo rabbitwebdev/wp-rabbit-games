@@ -93,7 +93,7 @@ if (in_array("Android", $platforms)) {
         <div class="single-game-details bg-primary dark text-white">
   <?php if ($background_image): ?>
         <div class="game-banner position-relative bg-primary  dark" style="height: 50vh;" >
-               <img class="game-banner-img vh-100 h-100 opacity-50 object-fit-cover img-scroll-hero" src="<?php echo $background_image; ?>"  alt="British Esports <?php echo $title; ?>" /> 
+               <img class="game-banner-img w-100 vh-100 h-100 opacity-50 object-fit-cover img-scroll-hero" src="<?php echo $background_image; ?>"  alt="British Esports <?php echo $title; ?>" /> 
              
   <h1 class="game-title position-absolute p-4 top-50 start-0"><?php echo $title; ?></h1>
         </div>

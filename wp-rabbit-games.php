@@ -2,7 +2,7 @@
 /**
  * Plugin Name: WP Rabbit Games
  * Description: Fetch and display game details from RAWG.io using a custom post type and Gutenberg block.
- * Version: 4.0.0
+ * Version: 4.1.0
  * Author: Your Name
  */
 
