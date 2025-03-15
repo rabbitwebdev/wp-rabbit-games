@@ -32,6 +32,10 @@ $title = esc_html($game_details->name);
 $description = isset($game_details->description) ? wp_kses_post($game_details->description) : 'No description available.';
 $background_image = isset($game_details->background_image) ? esc_url($game_details->background_image) : '';
 $rating = isset($game_details->rating) ? floatval($game_details->rating) : 0; // Convert to float
+$ratings_count = isset($game_details->ratings_count) ? intval($game_details->ratings_count) : 0; // Convert to integer
+$released = isset($game_details->released) ? date('F j, Y', strtotime($game_details->released)) : 'No release date available.';
+$website = isset($game_details->website) ? esc_url($game_details->website) : 'No website available.';
+$metacritic = isset($game_details->metacritic) ? intval($game_details->metacritic) : '';
 // Fetch screenshots
 $screenshots_url = "https://api.rawg.io/api/games/{$game_slug}/screenshots?key={$api_key}";
 $screenshots_response = wp_remote_get($screenshots_url);
@@ -97,8 +101,18 @@ if (in_array("Android", $platforms)) {
         <div class="container-fluid">
             <div class="row ">
                 <div class="col-md-12  col-lg-6">
-                    <div class="game-details  bg-primary  shadow-lg position-relative dark p-4">
-                          <h2 class="fw-bold mt-4 fs-4 mb-4"><?php echo $title; ?></h2>
+                    <div class="game-details  bg-primary  shadow-lg position-relative dark p-3">
+                          <h2 style="text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 5px;
+  width: fit-content;
+  padding-right: 40px;" class="fw-bold mt-4  fs-4 mb-4  position-relative"><?php echo $title; ?> 
+  <?php if(!empty($metacritic)) { ?>
+    <span class="position-absolute top-0 p-3 start-100 translate-middle badge rounded-pill bg-success"> 
+
+        <?php echo $metacritic ; ?>
+    </span> 
+         <?php  } ?></h2>
                                <?php if ($rating > 4.5) { ?>
  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="red" class="bi bi-star-fill" viewBox="0 0 16 16">
   <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
@@ -237,6 +251,10 @@ if (in_array("Android", $platforms)) {
                   echo "<p>No screenshots available.</p>";
               }
               ?>
+                 <?php if(!empty($ratings_count)) {
+                echo $ratings_count ;
+              } ?>
+             
                   <?php 
               $trailers_url = "https://api.rawg.io/api/games/{$game_slug}/movies?key={$api_key}";
 $trailers_response = wp_remote_get($trailers_url);
@@ -266,9 +284,15 @@ if (!empty($trailers_data->results)) {
     echo '</div>';
     echo '</div>';
 } else {
-    echo "<p>No trailers available.</p>";
+    echo '<p class="mt-5 fs-4" >No trailers available.</p>';
 }
 ?>
+<div class="col-lg-6">
+<?php if(!empty($website)) {
+                echo '<a href="' . esc_url($website) . '" class="btn btn-secondary mt-5 mb-5" target="_blank">Visit Game Website</a>';
+              } ?>
+    </div>
+
             </div>
         </div>
 </div>

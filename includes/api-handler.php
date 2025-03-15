@@ -236,14 +236,14 @@ function wp_rabbit_fetch_developer_games() {
         wp_die('No games found.');
     }
 
-    echo '<div class="row g-4 row-cols-md-2 row-cols-sm-1">';
+    echo '<div class="row g-4 row-cols-md-2 row-cols-1 row-cols-sm-1">';
     foreach ($data['results'] as $game) {
          $game_slug = esc_attr($game['slug']);
          $game_url = site_url("/game-details/$game_slug/");
          echo '<div class="col">'; 
-        echo '<div class="card rounded-0 bg-dark text-bg-dark" style="height:300px;">'; 
+        echo '<div class="card ratio ratio-1x1 rounded-0 bg-dark text-bg-dark" style="height:300px;">'; 
         echo '<a class="h-100 bg-dark dark text-white" href="' . esc_url($game_url) . '">';
-        echo '<img class="card-img opacity-50 h-100 rounded-0 object-fit-cover" src="' . esc_url($game['background_image']) . '" alt="' . esc_attr($game['name']) . '">';
+        echo '<img class="card-img w-100 opacity-50 h-100 rounded-0 object-fit-cover" src="' . esc_url($game['background_image']) . '" alt="' . esc_attr($game['name']) . '">';
         echo '<div class="card-img-overlay">';
         echo  '<h3 class="card-title fs-6 fw-light ">' . esc_html($game['name']) . '</h3>';
         echo '<p class="date">' . esc_html($game['released']) . '</p>';
@@ -334,14 +334,14 @@ function wp_rabbit_fetch_platform_games() {
         wp_die('No games found.');
     }
 
-      echo '<div class="row g-4 row-cols-md-2 row-cols-sm-1">';
+      echo '<div class="row g-4 row-cols-1 row-cols-md-2 row-cols-sm-1">';
     foreach ($data['results'] as $game) {
           $game_slug = esc_attr($game['slug']);
          $game_url = site_url("/game-details/$game_slug/");
          echo '<div class="col">'; 
-        echo '<div class="card rounded-0 bg-dark text-bg-dark" style="height:300px;">'; 
+        echo '<div class="card ratio ratio-1x1 rounded-0 bg-dark text-bg-dark" style="height:300px;">'; 
         echo '<a class="h-100 bg-dark dark text-white" href="' . esc_url($game_url) . '">';
-        echo '<img class="card-img opacity-50 h-100 rounded-0 object-fit-cover" src="' . esc_url($game['background_image']) . '" alt="' . esc_attr($game['name']) . '">';
+        echo '<img class="card-img opacity-50 w-100 h-100 rounded-0 object-fit-cover" src="' . esc_url($game['background_image']) . '" alt="' . esc_attr($game['name']) . '">';
         echo '<div class="card-img-overlay">';
         echo  '<h3 class="card-title fs-6 fw-light">' . esc_html($game['name']) . '</h3>';
         echo '<p class="date">' . esc_html($game['released']) . '</p>';
@@ -433,14 +433,14 @@ function wp_rabbit_fetch_genre_games() {
         wp_die('No games found.');
     }
 
-       echo '<div class="row g-4 row-cols-md-2 row-cols-sm-1">';
+       echo '<div class="row g-4 row-cols-1 row-cols-md-2 row-cols-sm-1">';
     foreach ($data['results'] as $game) {
           $game_slug = esc_attr($game['slug']);
          $game_url = site_url("/game-details/$game_slug/");
          echo '<div class="col">'; 
-        echo '<div class="card rounded-0 bg-dark text-bg-dark" style="height:300px;">'; 
+        echo '<div class="card ratio ratio-1x1 rounded-0 bg-dark text-bg-dark" style="height:300px;">'; 
         echo '<a class="h-100 bg-dark dark bg-dark text-white" href="' . esc_url($game_url) . '">';
-        echo '<img class="card-img opacity-50 h-100 rounded-0 object-fit-cover" src="' . esc_url($game['background_image']) . '" alt="' . esc_attr($game['name']) . '">';
+        echo '<img class="card-img w-100 opacity-50 h-100 rounded-0 object-fit-cover" src="' . esc_url($game['background_image']) . '" alt="' . esc_attr($game['name']) . '">';
         echo '<div class="card-img-overlay">';
         echo  '<h3 class="card-title fs-6 fw-light">' . esc_html($game['name']) . '</h3>';
         echo '<p class="date">' . esc_html($game['released']) . '</p>';

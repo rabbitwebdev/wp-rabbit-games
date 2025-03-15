@@ -2,7 +2,7 @@
 /**
  * Plugin Name: WP Rabbit Games
  * Description: Fetch and display game details from RAWG.io using a custom post type and Gutenberg block.
- * Version: 3.5.0
+ * Version: 4.0.0
  * Author: Your Name
  */
 
@@ -12,7 +12,7 @@ if (!defined('ABSPATH')) {
 }
 
 // Define constants
-define('WP_RABBIT_GAMES_VERSION', '3.0.0');
+define('WP_RABBIT_GAMES_VERSION', '4.0.0');
 define('WP_RABBIT_GAMES_API_URL', 'https://api.rawg.io/api/');
 define('WP_RABBIT_GAMES_PLUGIN_DIR', plugin_dir_path(__FILE__));
 // Include necessary files
