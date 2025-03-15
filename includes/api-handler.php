@@ -90,7 +90,7 @@ function wp_rabbit_games_display_dev($atts) {
     <div class="wp-rabbit-game row row-cols-2 game-card-group">
           <?php
          $api_key = get_option('wp_rabbit_games_api_key');
-              $api_url = "https://api.rawg.io/api/games?key={$api_key}&dates=2012-10-10,2025-10-10&developers={$dev_id}&page_size=32";
+              $api_url = "https://api.rawg.io/api/games?key={$api_key}&ordering=-rating&developers={$dev_id}&page_size=62";
 $response = wp_remote_get($api_url);
 $games = json_decode(wp_remote_retrieve_body($response));
         foreach ($games->results as $game) {
@@ -107,9 +107,9 @@ $games = json_decode(wp_remote_retrieve_body($response));
                             }
                             $platforms_list = !empty($platforms) ? implode(", ", $platforms) : "No platforms available.";
             $game_url = site_url("/game-details/{$game_slug}/"); // Use slug in the URL
-            echo "<div class='game-card col mb-3 text-bg-info  card'>
+            echo "<div class='game-card col mb-3 text-bg-info  card' style='height:300px'>
                     <a class='game-link' href='{$game_url}'>
-                        <img src='{$game_image}' alt='{$game_name}' class='card__image'>
+                        <img src='{$game_image}' alt='{$game_name}' class='h-100 object-fit-cover card__image'>
                         <div class='card__content'>
                             <h3 class='card__title'>{$game_name}</h3>
                             <p class='post-card__tag'>{$platforms_list}</p>
@@ -134,7 +134,7 @@ function wp_rabbit_dev_list_extra_shortcode($atts) {
         return 'RAWG.io API key is not set.';
     }
 
-    $url = WP_RABBIT_GAMES_API_URL . "developers?key={$api_key}&page_size=32";
+    $url = WP_RABBIT_GAMES_API_URL . "developers?key={$api_key}&page_size=52";
     $response = wp_remote_get($url);
     
     if (is_wp_error($response)) {
@@ -185,10 +185,10 @@ function wp_rabbit_games_extra_shortcode() {
 
     ob_start();
     ?>
-    <select id="wp-rabbit-developer-select">
-        <option value="">Select a Developer</option>
+    <select class="w-100 mb-4 mt-4 position-relative" id="wp-rabbit-developer-select">
+        <option  value="">Select a Developer</option>
         <?php foreach ($data['results'] as $developer): ?>
-            <option value="<?php echo esc_attr($developer['id']); ?>"><?php echo esc_html($developer['name']); ?></option>
+            <option class="w-100 " value="<?php echo esc_attr($developer['id']); ?>"><?php echo esc_html($developer['name']); ?></option>
         <?php endforeach; ?>
     </select>
     <div id="wp-rabbit-developer-games" class="mt-3 mb-3"></div>
@@ -222,7 +222,7 @@ function wp_rabbit_fetch_developer_games() {
         wp_die('Invalid request.');
     }
 
-    $url = WP_RABBIT_GAMES_API_URL . "games?developers={$developer_id}&key={$api_key}&page_size=32";
+    $url = WP_RABBIT_GAMES_API_URL . "games?key={$api_key}&developers={$developer_id}&ordering=-rating&page_size=82";
     $response = wp_remote_get($url);
     
     if (is_wp_error($response)) {
@@ -236,16 +236,16 @@ function wp_rabbit_fetch_developer_games() {
         wp_die('No games found.');
     }
 
-    echo '<div class="row g-3 row-cols-2">';
+    echo '<div class="row g-4 row-cols-md-2 row-cols-sm-1">';
     foreach ($data['results'] as $game) {
          $game_slug = esc_attr($game['slug']);
          $game_url = site_url("/game-details/$game_slug/");
          echo '<div class="col">'; 
-        echo '<div class="card h-100 rounded-0 bg-dark text-bg-dark">'; 
+        echo '<div class="card rounded-0 bg-dark text-bg-dark" style="height:300px;">'; 
         echo '<a class="h-100 bg-dark dark text-white" href="' . esc_url($game_url) . '">';
-        echo '<img class="card-img opacity-75 h-100 rounded-0 object-fit-cover" src="' . esc_url($game['background_image']) . '" alt="' . esc_attr($game['name']) . '">';
+        echo '<img class="card-img opacity-50 h-100 rounded-0 object-fit-cover" src="' . esc_url($game['background_image']) . '" alt="' . esc_attr($game['name']) . '">';
         echo '<div class="card-img-overlay">';
-        echo  '<h3 class="card-title">' . esc_html($game['name']) . '</h3>';
+        echo  '<h3 class="card-title fs-6 fw-light ">' . esc_html($game['name']) . '</h3>';
         echo '<p class="date">' . esc_html($game['released']) . '</p>';
         echo '</div>';
         echo '</a>';
@@ -267,7 +267,7 @@ function wp_rabbit_games_platforms_shortcode() {
         return 'RAWG.io API key is not set.';
     }
 
-    $url = WP_RABBIT_GAMES_API_URL . "platforms?key={$api_key}&page_size=26";
+    $url = WP_RABBIT_GAMES_API_URL . "platforms?key={$api_key}&page_size=32";
     $response = wp_remote_get($url);
     
     if (is_wp_error($response)) {
@@ -283,7 +283,7 @@ function wp_rabbit_games_platforms_shortcode() {
 
     ob_start();
     ?>
-    <select id="wp-rabbit-platform-select">
+    <select class="w-100 mb-4 mt-4 position-relative" id="wp-rabbit-platform-select">
         <option value="">Select a Platform</option>
         <?php foreach ($data['results'] as $platform): ?>
             <option value="<?php echo esc_attr($platform['id']); ?>"><?php echo esc_html($platform['name']); ?></option>
@@ -320,7 +320,7 @@ function wp_rabbit_fetch_platform_games() {
         wp_die('Invalid request.');
     }
 
-    $url = WP_RABBIT_GAMES_API_URL . "games?platforms={$platform_id}&key={$api_key}&dates=2012-10-10,2025-10-10&ordering=added&page_size=32";  
+    $url = WP_RABBIT_GAMES_API_URL . "games?platforms={$platform_id}&key={$api_key}&ordering=-rating&page_size=72";  
     $response = wp_remote_get($url);
     
     if (is_wp_error($response)) {
@@ -334,16 +334,16 @@ function wp_rabbit_fetch_platform_games() {
         wp_die('No games found.');
     }
 
-      echo '<div class="row g-3 row-cols-2">';
+      echo '<div class="row g-4 row-cols-md-2 row-cols-sm-1">';
     foreach ($data['results'] as $game) {
           $game_slug = esc_attr($game['slug']);
          $game_url = site_url("/game-details/$game_slug/");
          echo '<div class="col">'; 
-        echo '<div class="card h-100 rounded-0 bg-dark text-bg-dark">'; 
+        echo '<div class="card rounded-0 bg-dark text-bg-dark" style="height:300px;">'; 
         echo '<a class="h-100 bg-dark dark text-white" href="' . esc_url($game_url) . '">';
-        echo '<img class="card-img opacity-75 h-100 rounded-0 object-fit-cover" src="' . esc_url($game['background_image']) . '" alt="' . esc_attr($game['name']) . '">';
+        echo '<img class="card-img opacity-50 h-100 rounded-0 object-fit-cover" src="' . esc_url($game['background_image']) . '" alt="' . esc_attr($game['name']) . '">';
         echo '<div class="card-img-overlay">';
-        echo  '<h3 class="card-title">' . esc_html($game['name']) . '</h3>';
+        echo  '<h3 class="card-title fs-6 fw-light">' . esc_html($game['name']) . '</h3>';
         echo '<p class="date">' . esc_html($game['released']) . '</p>';
         echo '</div>';
         echo '</a>';
@@ -366,7 +366,7 @@ function wp_rabbit_games_genres_shortcode() {
         return 'RAWG.io API key is not set.';
     }
 
-    $url = WP_RABBIT_GAMES_API_URL . "genres?key={$api_key}&page_size=26";
+    $url = WP_RABBIT_GAMES_API_URL . "genres?key={$api_key}&page_size=32";
     $response = wp_remote_get($url);
     
     if (is_wp_error($response)) {
@@ -382,7 +382,7 @@ function wp_rabbit_games_genres_shortcode() {
 
     ob_start();
     ?>
-    <select id="wp-rabbit-genre-select">
+    <select class="w-100 mb-4 mt-4 position-relative" id="wp-rabbit-genre-select">
         <option value="">Select a Genre</option>
         <?php foreach ($data['results'] as $genre): ?>
             <option value="<?php echo esc_attr($genre['id']); ?>"><?php echo esc_html($genre['name']); ?></option>
@@ -419,7 +419,7 @@ function wp_rabbit_fetch_genre_games() {
         wp_die('Invalid request.');
     }
 
-    $url = WP_RABBIT_GAMES_API_URL . "games?genres={$genre_id}&key={$api_key}&page_size=32";
+    $url = WP_RABBIT_GAMES_API_URL . "games?genres={$genre_id}&key={$api_key}&page_size=82";
     $response = wp_remote_get($url);
     
     if (is_wp_error($response)) {
@@ -433,16 +433,16 @@ function wp_rabbit_fetch_genre_games() {
         wp_die('No games found.');
     }
 
-       echo '<div class="row g-3 row-cols-2">';
+       echo '<div class="row g-4 row-cols-md-2 row-cols-sm-1">';
     foreach ($data['results'] as $game) {
           $game_slug = esc_attr($game['slug']);
          $game_url = site_url("/game-details/$game_slug/");
          echo '<div class="col">'; 
-        echo '<div class="card h-100 rounded-0 bg-dark text-bg-dark">'; 
-        echo '<a class="h-100 bg-dark dark text-white" href="' . esc_url($game_url) . '">';
-        echo '<img class="card-img opacity-75 h-100 rounded-0 object-fit-cover" src="' . esc_url($game['background_image']) . '" alt="' . esc_attr($game['name']) . '">';
+        echo '<div class="card rounded-0 bg-dark text-bg-dark" style="height:300px;">'; 
+        echo '<a class="h-100 bg-dark dark bg-dark text-white" href="' . esc_url($game_url) . '">';
+        echo '<img class="card-img opacity-50 h-100 rounded-0 object-fit-cover" src="' . esc_url($game['background_image']) . '" alt="' . esc_attr($game['name']) . '">';
         echo '<div class="card-img-overlay">';
-        echo  '<h3 class="card-title">' . esc_html($game['name']) . '</h3>';
+        echo  '<h3 class="card-title fs-6 fw-light">' . esc_html($game['name']) . '</h3>';
         echo '<p class="date">' . esc_html($game['released']) . '</p>';
         echo '</div>';
         echo '</a>';
