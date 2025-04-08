@@ -106,9 +106,14 @@ registerBlockType('wprg/rabbit-game-block', {
                 tagName: 'p',
                 value: content,
             }),
-            wp.element.createElement(RichText.selectGame, {
+            wp.element.createElement('select', {
                 value: selectGame,
-            }),
+                onChange: (event) => setAttributes({ selectGame: event.target.value }),
+            }, [
+                wp.element.createElement('option', { value: 'wp_rabbit_genres' }, __('Genre', 'myplugin')),
+                wp.element.createElement('option', { value: 'wp_rabbit_platforms' }, __('Platform', 'myplugin')),
+                wp.element.createElement('option', { value: 'wp_rabbit_extra' }, __('Extra', 'myplugin')),
+            ]),
             wp.element.createElement('button', {
                 className: 'wp-block-button__link',
             }, buttonText)
