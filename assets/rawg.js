@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <div class="col">    
                     <div class="game game-card card ratio ratio-1x1 rounded-0 bg-dark text-bg-dark" style="height:300px;">
                             <a href="${gameUrl}" class="game-link h-100 bg-dark dark bg-dark text-white" style="text-decoration: none; color: inherit;">
-                            <img src="${game.background_image}" alt="${game.name}" class="card-img  w-100 h-100 rounded-0 object-fit-cover">
+                            <img src="${game.background_image}" alt="${game.name}" class="card-img opacity-50 w-100 h-100 rounded-0 object-fit-cover">
                             <div class="card-img-overlay">
                             <h3 class="card-title fs-6 fw-light">${game.name}</h3>
                             <p class="date">${game.released || "TBA"}</p>

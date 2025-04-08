@@ -167,6 +167,7 @@ function wpgr_render_upcoming_games_block() {
             <div class="row">
                 <div class="col-md-12">
                     <h2>Upcoming Games GR</h2>
+                    <?php echo do_shortcode( '[wp_rabbit_genres]' ); ?>
                     <div id="rawg-filters">
                         <label for="release-year-filter">
                             Release Year:
