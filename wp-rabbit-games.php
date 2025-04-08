@@ -97,7 +97,11 @@ function wpgr_register_upcoming_games_block() {
         filemtime($block_dir . '/index.css')
     );
 
-    register_block_type_from_metadata($block_dir);
+    register_block_type('wpgr/upcoming-games', [
+        'editor_script' => 'wpgr-block-editor-script',
+        'editor_style'  => 'wpgr-block-editor-style',
+        'render_callback' => 'wpgr_render_upcoming_games_block',
+    ]);
 }
 add_action('init', 'wpgr_register_upcoming_games_block');
 
@@ -114,6 +118,7 @@ function wprg_render_upcoming_games_block() {
          <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
+                    <h2>Upcoming Games RG</h2>
                     <div id="rawg-filters">
                         <label for="release-year-filter">
                             Release Year:
@@ -162,6 +167,7 @@ function wpgr_render_upcoming_games_block() {
          <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
+                    <h2>Upcoming Games GR</h2>
                     <div id="rawg-filters">
                         <label for="release-year-filter">
                             Release Year:

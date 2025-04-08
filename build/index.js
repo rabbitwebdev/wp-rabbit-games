@@ -48,3 +48,4 @@ registerBlockType('wprg/upcoming-games', {
         return null;
     },
 });
+

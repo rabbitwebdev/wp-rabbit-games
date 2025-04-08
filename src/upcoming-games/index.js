@@ -1,12 +1,22 @@
-import { registerBlockType } from '@wordpress/blocks';
+const { registerBlockType } = wp.blocks;
+
+const { TextControl } = wp.components;
+const { InspectorControls } = wp.blockEditor;
 
 registerBlockType('wpgr/upcoming-games', {
+    title: 'Upcoming Games (RAWG) Block',
+    icon: 'schedule',
+    category: 'widgets',
+    supports: {
+        html: false,
+    },
     edit: () => {
         return (
-            <p>Live preview below (from server).</p>
+            wp.element.createElement('p', {}, 'Upcoming Games block (new block).')
         );
     },
     save: () => {
-        return null; // Important for server-side rendering
-    }
+        // Important: Must return null for server-side render
+        return null;
+    },
 });
