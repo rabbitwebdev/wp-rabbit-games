@@ -1,0 +1,15 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "wprg/upcoming-games",
+  "title": "Upcoming Games (RAWG)",
+  "category": "widgets",
+  "icon": "schedule",
+  "description": "Shows upcoming games with filters for year and platform.",
+  "supports": {
+    "html": false
+  },
+  "editorScript": "wprg-block-editor-script",
+  "editorStyle": "wprg-block-editor-style",
+  "render": "wprg_render_upcoming_games_block"
+}

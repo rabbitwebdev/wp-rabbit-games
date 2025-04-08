@@ -2,7 +2,7 @@
 /**
  * Plugin Name: WP Rabbit Games
  * Description: Fetch and display game details from RAWG.io using a custom post type and Gutenberg block.
- * Version: 7.0.0
+ * Version: 8.0.0
  * Author: Your Name
  */
 
@@ -74,11 +74,33 @@ wp_localize_script('rawg-js', 'rawgData', [
     'apiKey' => get_option('wp_rabbit_games_api_key'),
 ]);
 
-register_block_type('wprg/upcoming-games', array(
-    'editor_script' => 'wprg-block-editor-script',
-    'editor_style'  => 'wprg-block-editor-style',
-    'render_callback' => 'wprg_render_upcoming_games_block',
-));
+// register_block_type('wprg/upcoming-games', array(
+//     'editor_script' => 'wprg-block-editor-script',
+//     'editor_style'  => 'wprg-block-editor-style',
+//     'render_callback' => 'wprg_render_upcoming_games_block',
+// ));
+
+function wprg_register_upcoming_games_block() {
+    $block_dir = __DIR__ . '/src/upcoming-games';
+
+    wp_register_script(
+        'wprg-block-editor-script',
+        plugins_url('src/upcoming-games/index.js', __FILE__),
+        ['wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-i18n'],
+        filemtime($block_dir . '/index.js')
+    );
+
+    wp_register_style(
+        'wprg-block-editor-style',
+        plugins_url('src/upcoming-games/index.css', __FILE__),
+        ['wp-edit-blocks'],
+        filemtime($block_dir . '/index.css')
+    );
+
+    register_block_type_from_metadata($block_dir);
+}
+add_action('init', 'wprg_register_upcoming_games_block');
+
 
 /**
  * Renders the Upcoming Games block HTML.
