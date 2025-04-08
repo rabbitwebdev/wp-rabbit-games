@@ -25,10 +25,14 @@ registerBlockType('wprg/rabbit-game-block', {
             type: 'string',
             default: 'primary',
         },
+        selectGame: {
+            type: 'string',
+            default: 'wp_rabbit_genres',
+        },
     },
     edit: function (props) {
         const { attributes, setAttributes } = props;
-        const { content, showTitle, buttonText, buttonStyle } = attributes;
+        const { content, showTitle, buttonText, buttonStyle, selectGame } = attributes;
 
         return [
             wp.element.createElement(
@@ -46,6 +50,16 @@ registerBlockType('wprg/rabbit-game-block', {
                         label: __('Button Text', 'myplugin'),
                         value: buttonText,
                         onChange: (val) => setAttributes({ buttonText: val }),
+                    }),
+                     wp.element.createElement(SelectControl, {
+                        label: __('Select Game', 'myplugin'),
+                        value: selectGame,
+                        options: [
+                            { label: 'Genre', value: 'wp_rabbit_genres' },
+                            { label: 'Platform', value: 'wp_rabbit_platforms' },
+                            { label: 'Extra', value: 'wp_rabbit_extra' },
+                        ],
+                        onChange: (val) => setAttributes({ selectGame: val }),
                     }),
                     wp.element.createElement(SelectControl, {
                         label: __('Button Style', 'myplugin'),
@@ -67,6 +81,14 @@ registerBlockType('wprg/rabbit-game-block', {
                     onChange: (val) => setAttributes({ content: val }),
                     placeholder: __('Write something...', 'myplugin'),
                 }),
+                wp.element.createElement(selectGame, {
+                    value: selectGame,
+                    onChange: (val) => setAttributes({ selectGame: val }),
+                }, [
+                    wp.element.createElement('option', { value: 'wp_rabbit_genres' }, __('Genre', 'myplugin')),
+                    wp.element.createElement('option', { value: 'wp_rabbit_platforms' }, __('Platform', 'myplugin')),
+                    wp.element.createElement('option', { value: 'wp_rabbit_extra' }, __('Extra', 'myplugin')),
+                ]),
                 wp.element.createElement('button', {
                     className: 'wp-block-button__link',
                 }, buttonText)
@@ -76,13 +98,16 @@ registerBlockType('wprg/rabbit-game-block', {
 
     save: function (props) {
         const { attributes } = props;
-        const { content, showTitle, buttonText, buttonStyle } = attributes;
+        const { content, showTitle, buttonText, buttonStyle, selectGame } = attributes;
 
         return wp.element.createElement('div', { className: `btn btn-${buttonStyle}` },
             showTitle && wp.element.createElement('h3', null, 'Title Goes Here'),
             wp.element.createElement(RichText.Content, {
                 tagName: 'p',
                 value: content,
+            }),
+            wp.element.createElement(RichText.selectGame, {
+                value: selectGame,
             }),
             wp.element.createElement('button', {
                 className: 'wp-block-button__link',
@@ -114,6 +139,17 @@ registerBlockType('wpgr/upcoming-games', {
     title: 'Upcoming Games (RAWG) Block',
     icon: 'schedule',
     category: 'widgets',
+    attributes: {
+        content: {
+            type: 'string',
+            source: 'html',
+            selector: 'p',
+        },
+        className: {
+            type: 'string',
+            default: 'upcoming-games',
+        },
+    },
     supports: {
         html: false,
     },
