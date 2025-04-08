@@ -30,3 +30,21 @@ registerBlockType('wprg/rabbit-game-block', {
         });
     },
 });
+
+registerBlockType('wprg/upcoming-games', {
+    title: 'Upcoming Games (RAWG)',
+    icon: 'schedule',
+    category: 'widgets',
+    supports: {
+        html: false,
+    },
+    edit: () => {
+        return (
+            wp.element.createElement('p', {}, 'Upcoming Games block (rendered on frontend).')
+        );
+    },
+    save: () => {
+        // Important: Must return null for server-side render
+        return null;
+    },
+});

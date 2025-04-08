@@ -2,7 +2,7 @@
 /**
  * Plugin Name: WP Rabbit Games
  * Description: Fetch and display game details from RAWG.io using a custom post type and Gutenberg block.
- * Version: 5.2.0
+ * Version: 5.5.0
  * Author: Your Name
  */
 
@@ -73,3 +73,44 @@ wp_enqueue_script('rawg-js', plugin_dir_url(__FILE__) . 'assets/rawg.js', [], nu
 wp_localize_script('rawg-js', 'rawgData', [
     'apiKey' => get_option('wp_rabbit_games_api_key'),
 ]);
+
+register_block_type('wprg/upcoming-games', array(
+    'editor_script' => 'wprg-block-editor-script',
+    'editor_style'  => 'wprg-block-editor-style',
+    'render_callback' => 'wprg_render_upcoming_games_block',
+));
+
+/**
+ * Renders the Upcoming Games block HTML.
+ */
+function wprg_render_upcoming_games_block() {
+    ob_start();
+
+    $currentYear = date('Y');
+    ?>
+    <div id="rawg-filters">
+        <label for="release-year-filter">
+            Release Year:
+            <select id="release-year-filter">
+                <?php
+                for ($y = $currentYear; $y >= $currentYear - 10; $y--) {
+                    echo "<option value='{$y}'>{$y}</option>";
+                }
+                ?>
+            </select>
+        </label>
+
+        <label for="platform-select" style="margin-left: 20px;">
+            Platform:
+            <select id="platform-select">
+                <option value="all">All Platforms</option>
+                <!-- Filled via JS -->
+            </select>
+        </label>
+    </div>
+
+    <div id="upcoming-games" class="game-cards cards" style="margin-top: 20px;"></div>
+    <?php
+
+    return ob_get_clean();
+}
