@@ -1,5 +1,7 @@
 const { registerBlockType } = wp.blocks;
-const { RichText } = wp.blockEditor;
+const { RichText, InspectorControls } = wp.blockEditor;
+const { PanelBody, ToggleControl, TextControl, SelectControl } = wp.components;
+const { __ } = wp.i18n;
 
 registerBlockType('wprg/rabbit-game-block', {
     title: 'Rabbit Game Block',
@@ -11,25 +13,84 @@ registerBlockType('wprg/rabbit-game-block', {
             source: 'html',
             selector: 'p',
         },
+          showTitle: {
+            type: 'boolean',
+            default: true,
+        },
+         buttonText: {
+            type: 'string',
+            default: 'Click Me',
+        },
+        buttonStyle: {
+            type: 'string',
+            default: 'primary',
+        },
     },
-    edit: (props) => {
-        return (
-            wp.element.createElement(RichText, {
+    edit: function (props) {
+        const { attributes, setAttributes } = props;
+        const { content, showTitle, buttonText, buttonStyle } = attributes;
+
+        return [
+            wp.element.createElement(
+                InspectorControls,
+                null,
+                wp.element.createElement(
+                    PanelBody,
+                    { title: __('Block Settings', 'myplugin'), initialOpen: true },
+                    wp.element.createElement(ToggleControl, {
+                        label: __('Show Title', 'myplugin'),
+                        checked: showTitle,
+                        onChange: (val) => setAttributes({ showTitle: val }),
+                    }),
+                    wp.element.createElement(TextControl, {
+                        label: __('Button Text', 'myplugin'),
+                        value: buttonText,
+                        onChange: (val) => setAttributes({ buttonText: val }),
+                    }),
+                    wp.element.createElement(SelectControl, {
+                        label: __('Button Style', 'myplugin'),
+                        value: buttonStyle,
+                        options: [
+                            { label: 'Primary', value: 'primary' },
+                            { label: 'Secondary', value: 'secondary' },
+                            { label: 'Outline', value: 'outline' },
+                        ],
+                        onChange: (val) => setAttributes({ buttonStyle: val }),
+                    })
+                )
+            ),
+            wp.element.createElement('div', { className: props.className },
+                showTitle && wp.element.createElement('h3', null, 'Title Goes Here'),
+                wp.element.createElement(RichText, {
+                    tagName: 'p',
+                    value: content,
+                    onChange: (val) => setAttributes({ content: val }),
+                    placeholder: __('Write something...', 'myplugin'),
+                }),
+                wp.element.createElement('button', {
+                    className: 'wp-block-button__link',
+                }, buttonText)
+            )
+        ];
+    },
+
+    save: function (props) {
+        const { attributes } = props;
+        const { content, showTitle, buttonText, buttonStyle } = attributes;
+
+        return wp.element.createElement('div', { className: `btn btn-${buttonStyle}` },
+            showTitle && wp.element.createElement('h3', null, 'Title Goes Here'),
+            wp.element.createElement(RichText.Content, {
                 tagName: 'p',
-                className: props.className,
-                value: props.attributes.content,
-                onChange: (content) => props.setAttributes({ content }),
-                placeholder: 'Write here...',
-            })
+                value: content,
+            }),
+            wp.element.createElement('button', {
+                className: 'wp-block-button__link',
+            }, buttonText)
         );
-    },
-    save: (props) => {
-        return wp.element.createElement(RichText.Content, {
-            tagName: 'p',
-            value: props.attributes.content,
-        });
-    },
+    }
 });
+
 
 registerBlockType('wprg/upcoming-games', {
     title: 'Upcoming Games (RAWG)',
