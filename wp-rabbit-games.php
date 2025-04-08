@@ -2,7 +2,7 @@
 /**
  * Plugin Name: WP Rabbit Games
  * Description: Fetch and display game details from RAWG.io using a custom post type and Gutenberg block.
- * Version: 5.1.0
+ * Version: 5.2.0
  * Author: Your Name
  */
 
@@ -68,3 +68,8 @@ function wprg_register_custom_block() {
 add_action( 'init', 'wprg_register_custom_block' );
 
 
+wp_enqueue_script('rawg-js', plugin_dir_url(__FILE__) . 'assets/rawg.js', [], null, true);
+
+wp_localize_script('rawg-js', 'rawgData', [
+    'apiKey' => get_option('wp_rabbit_games_api_key'),
+]);
