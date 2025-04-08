@@ -74,11 +74,11 @@ wp_localize_script('rawg-js', 'rawgData', [
     'apiKey' => get_option('wp_rabbit_games_api_key'),
 ]);
 
-// register_block_type('wprg/upcoming-games', array(
-//     'editor_script' => 'wprg-block-editor-script',
-//     'editor_style'  => 'wprg-block-editor-style',
-//     'render_callback' => 'wprg_render_upcoming_games_block',
-// ));
+register_block_type('wprg/upcoming-games', array(
+    'editor_script' => 'wprg-block-editor-script',
+    'editor_style'  => 'wprg-block-editor-style',
+    'render_callback' => 'wprg_render_upcoming_games_block',
+));
 
 function wprg_register_upcoming_games_block() {
     $block_dir = __DIR__ . '/src/upcoming-games';
