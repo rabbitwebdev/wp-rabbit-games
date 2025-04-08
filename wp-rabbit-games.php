@@ -2,7 +2,7 @@
 /**
  * Plugin Name: WP Rabbit Games
  * Description: Fetch and display game details from RAWG.io using a custom post type and Gutenberg block.
- * Version: 6.1.0
+ * Version: 7.0.0
  * Author: Your Name
  */
 
@@ -116,7 +116,7 @@ function wprg_render_upcoming_games_block() {
 
             </div>
          
-                 <div id="upcoming-games" class=" game-cards cards row row-cols-md-3" style="margin-top: 20px;"></div>
+                 <div id="upcoming-games" class=" game-cards cards row g-4 row-cols-1 row-cols-md-2 row-cols-sm-1" style="margin-top: 20px;"></div>
               </div>         
 </div>
    
