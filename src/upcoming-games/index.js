@@ -1,6 +1,6 @@
 import { registerBlockType } from '@wordpress/blocks';
 
-registerBlockType('wprg/upcoming-games', {
+registerBlockType('wpgr/upcoming-games', {
     edit: () => {
         return (
             <p>Live preview below (from server).</p>

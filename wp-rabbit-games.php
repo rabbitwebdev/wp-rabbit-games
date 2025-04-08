@@ -80,18 +80,18 @@ register_block_type('wprg/upcoming-games', array(
     'render_callback' => 'wprg_render_upcoming_games_block',
 ));
 
-function wprg_register_upcoming_games_block() {
+function wpgr_register_upcoming_games_block() {
     $block_dir = __DIR__ . '/src/upcoming-games';
 
     wp_register_script(
-        'wprg-block-editor-script',
+        'wpgr-block-editor-script',
         plugins_url('src/upcoming-games/index.js', __FILE__),
         ['wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-i18n'],
         filemtime($block_dir . '/index.js')
     );
 
     wp_register_style(
-        'wprg-block-editor-style',
+        'wpgr-block-editor-style',
         plugins_url('src/upcoming-games/index.css', __FILE__),
         ['wp-edit-blocks'],
         filemtime($block_dir . '/index.css')
@@ -99,13 +99,61 @@ function wprg_register_upcoming_games_block() {
 
     register_block_type_from_metadata($block_dir);
 }
-add_action('init', 'wprg_register_upcoming_games_block');
+add_action('init', 'wpgr_register_upcoming_games_block');
 
 
 /**
  * Renders the Upcoming Games block HTML.
  */
 function wprg_render_upcoming_games_block() {
+    ob_start();
+
+    $currentYear = date('Y');
+    ?>
+    <div class="rabbit-game-filter-block">
+         <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="rawg-filters">
+                        <label for="release-year-filter">
+                            Release Year:
+                            <select id="release-year-filter">
+                                <?php
+                                for ($y = $currentYear; $y >= $currentYear - 10; $y--) {
+                                    echo "<option value='{$y}'>{$y}</option>";
+                                }
+                                ?>
+                            </select>
+                        </label>
+
+                        <label for="platform-select" style="margin-left: 20px;">
+                        Platform:
+                        <select id="platform-select">
+                            <option value="all">All Platforms</option>
+                            <!-- Filled via JS -->
+                        </select>
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+         
+                 <div id="upcoming-games" class=" game-cards cards row g-4 row-cols-1 row-cols-md-2 row-cols-sm-1" style="margin-top: 20px;"></div>
+              </div>         
+</div>
+   
+
+   
+    <?php
+
+    return ob_get_clean();
+}
+
+
+/**
+ * Renders the Upcoming Games block HTML.
+ */
+function wpgr_render_upcoming_games_block() {
     ob_start();
 
     $currentYear = date('Y');
