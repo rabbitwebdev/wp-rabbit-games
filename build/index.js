@@ -49,3 +49,20 @@ registerBlockType('wprg/upcoming-games', {
     },
 });
 
+registerBlockType('wpgr/upcoming-games', {
+    title: 'Upcoming Games (RAWG) Block',
+    icon: 'schedule',
+    category: 'widgets',
+    supports: {
+        html: false,
+    },
+    edit: () => {
+        return (
+            wp.element.createElement('p', {}, 'Upcoming Games block (new block).')
+        );
+    },
+    save: () => {
+        // Important: Must return null for server-side render
+        return null;
+    },
+});

@@ -97,15 +97,14 @@ function wpgr_register_upcoming_games_block() {
         filemtime($block_dir . '/index.css')
     );
 
-    register_block_type('wpgr/upcoming-games', [
-        'editor_script' => 'wpgr-block-editor-script',
-        'editor_style'  => 'wpgr-block-editor-style',
-        'render_callback' => 'wpgr_render_upcoming_games_block',
-    ]);
 }
 add_action('init', 'wpgr_register_upcoming_games_block');
 
-
+register_block_type('wpgr/upcoming-games', array(
+    'editor_script' => 'wpgr-block-editor-script',
+    'editor_style'  => 'wpgr-block-editor-style',
+    'render_callback' => 'wpgr_render_upcoming_games_block',
+));
 /**
  * Renders the Upcoming Games block HTML.
  */
