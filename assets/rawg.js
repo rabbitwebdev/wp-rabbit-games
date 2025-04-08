@@ -63,8 +63,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     gamesContainer.innerHTML += `
                         <div class="game game-card card" style="margin-bottom: 20px;">
                             <a href="${gameUrl}" class="game-link" style="text-decoration: none; color: inherit;">
-                            <img src="${game.background_image}" alt="${game.name}" class="card__image">
-                            <div class="card__content">
+                            <img src="${game.background_image}" alt="${game.name}" class="card-img opacity-50 w-100 h-100 rounded-0 object-fit-cover">
+                            <div class="card-img-overlay">
                             <h3 class="card__title">${game.name}</h3>
                              <p> ${platforms}</p>
                             <p class="post-card__tag">${game.released || "TBA"}</p>
