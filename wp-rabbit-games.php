@@ -2,7 +2,7 @@
 /**
  * Plugin Name: WP Rabbit Games
  * Description: Fetch and display game details from RAWG.io using a custom post type and Gutenberg block.
- * Version: 5.5.0
+ * Version: 5.6.0
  * Author: Your Name
  */
 
@@ -88,28 +88,40 @@ function wprg_render_upcoming_games_block() {
 
     $currentYear = date('Y');
     ?>
-    <div id="rawg-filters">
-        <label for="release-year-filter">
-            Release Year:
-            <select id="release-year-filter">
-                <?php
-                for ($y = $currentYear; $y >= $currentYear - 10; $y--) {
-                    echo "<option value='{$y}'>{$y}</option>";
-                }
-                ?>
-            </select>
-        </label>
+    <div class="rabbit-game-filter-block">
+         <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="rawg-filters">
+                        <label for="release-year-filter">
+                            Release Year:
+                            <select id="release-year-filter">
+                                <?php
+                                for ($y = $currentYear; $y >= $currentYear - 10; $y--) {
+                                    echo "<option value='{$y}'>{$y}</option>";
+                                }
+                                ?>
+                            </select>
+                        </label>
 
-        <label for="platform-select" style="margin-left: 20px;">
-            Platform:
-            <select id="platform-select">
-                <option value="all">All Platforms</option>
-                <!-- Filled via JS -->
-            </select>
-        </label>
-    </div>
+                        <label for="platform-select" style="margin-left: 20px;">
+                        Platform:
+                        <select id="platform-select">
+                            <option value="all">All Platforms</option>
+                            <!-- Filled via JS -->
+                        </select>
+                        </label>
+                    </div>
+                </div>
 
-    <div id="upcoming-games" class="game-cards cards" style="margin-top: 20px;"></div>
+            </div>
+            <div class="row row-cols-md-3">
+                 <div id="upcoming-games" class="col game-cards cards" style="margin-top: 20px;"></div>
+                        </div>
+</div>
+   
+
+   
     <?php
 
     return ob_get_clean();
