@@ -61,15 +61,16 @@ document.addEventListener("DOMContentLoaded", () => {
                     const platforms = game.platforms?.map(p => p.platform.name).join(", ") || "Unknown";
                       const gameUrl = `${window.location.origin}/game-details/${game.slug}/`;
                     gamesContainer.innerHTML += `
-                        <div class="game col game-card card border-0" style="margin-bottom: 20px;">
-                            <a href="${gameUrl}" class="game-link" style="text-decoration: none; color: inherit;">
+                    <div class="col">    
+                    <div class="game game-card card ratio ratio-1x1 rounded-0 bg-dark text-bg-dark" style="height:300px;">
+                            <a href="${gameUrl}" class="game-link h-100 bg-dark dark bg-dark text-white" style="text-decoration: none; color: inherit;">
                             <img src="${game.background_image}" alt="${game.name}" class="card-img  w-100 h-100 rounded-0 object-fit-cover">
                             <div class="card-img-overlay">
                             <h3 class="card-title fs-6 fw-light">${game.name}</h3>
-                             <p> ${platforms}</p>
                             <p class="date">${game.released || "TBA"}</p>
                             </div>
                             </a>
+                        </div>
                         </div>
                     `;
                 });
