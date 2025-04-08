@@ -61,13 +61,13 @@ document.addEventListener("DOMContentLoaded", () => {
                     const platforms = game.platforms?.map(p => p.platform.name).join(", ") || "Unknown";
                       const gameUrl = `${window.location.origin}/game-details/${game.slug}/`;
                     gamesContainer.innerHTML += `
-                        <div class="game game-card card" style="margin-bottom: 20px;">
+                        <div class="game col game-card card ratio ratio-1x1" style="margin-bottom: 20px;">
                             <a href="${gameUrl}" class="game-link" style="text-decoration: none; color: inherit;">
                             <img src="${game.background_image}" alt="${game.name}" class="card-img opacity-50 w-100 h-100 rounded-0 object-fit-cover">
                             <div class="card-img-overlay">
-                            <h3 class="card__title">${game.name}</h3>
+                            <h3 class="card-title fs-6 fw-light">${game.name}</h3>
                              <p> ${platforms}</p>
-                            <p class="post-card__tag">${game.released || "TBA"}</p>
+                            <p class="date">${game.released || "TBA"}</p>
                             </div>
                             </a>
                         </div>
