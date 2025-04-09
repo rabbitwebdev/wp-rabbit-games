@@ -82,18 +82,32 @@ wp_localize_script('rawg-js', 'rawgData', [
 ]);
 
 function myplugin_render_select_game_block($attributes) {
-     ob_start();
-    ?>
-      <div class="container-fluid">
-        <?php
-    if (empty($attributes['selectGame'])) {
+      if (empty($attributes['selectGame'])) {
         return '';
     }
 
     $type = esc_attr($attributes['selectGame']);
-    return do_shortcode('[' . $type . ']');
+
+    // Wrap the shortcode output in custom HTML
+    $shortcode_output = do_shortcode('[' . $type . ']');
+
+    ob_start();
     ?>
+    <section class="custom-game-block-wrapper  section-block  bg-primary theme-light text-white pt-4 pb-4 mt-0  mb-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Upcoming Games</h2>
+                </div>
+            </div>
+        <div class="game-type-meta">
+            <strong>Game Type:</strong> <?php echo esc_html($type); ?>
         </div>
+        <div class="game-shortcode-output">
+            <?php echo $shortcode_output; ?>
+        </div>
+        </div>
+    </section>
     <?php
     return ob_get_clean();
 }
