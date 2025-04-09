@@ -36,7 +36,7 @@ registerBlockType('wprg/rabbit-game-block', {
     },
     edit: function (props) {
         const { attributes, setAttributes } = props;
-        const { content, showTitle, buttonText, buttonStyle, selectGame } = attributes;
+        const { content, showTitle, buttonText, buttonStyle, selectGame, contentText } = attributes;
 
         return [
             wp.element.createElement(
@@ -51,7 +51,7 @@ registerBlockType('wprg/rabbit-game-block', {
                         onChange: (val) => setAttributes({ showTitle: val }),
                     }),
                     wp.element.createElement(TextControl, {
-                        label: __('Button Text', 'myplugin'),
+                        label: __('Text', 'myplugin'),
                         value: buttonText,
                         onChange: (val) => setAttributes({ buttonText: val }),
                     }),
