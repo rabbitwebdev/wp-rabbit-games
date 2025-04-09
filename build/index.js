@@ -94,16 +94,13 @@ registerBlockType('wprg/rabbit-game-block', {
 
     save: function (props) {
         const { attributes } = props;
-        const { content, showTitle, buttonText, buttonStyle, selectGame } = attributes;
+        const { content, showTitle, buttonText, buttonStyle } = attributes;
 
         return wp.element.createElement('div', { className: `btn btn-${buttonStyle}` },
             showTitle && wp.element.createElement('h3', null, 'Title Goes Here'),
             wp.element.createElement(RichText.Content, {
                 tagName: 'p',
                 value: content,
-            }),
-            wp.element.createElement('p', {
-                value: selectGame,
             }),
             wp.element.createElement('button', {
                 className: 'wp-block-button__link',
