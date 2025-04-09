@@ -21,6 +21,10 @@ registerBlockType('wprg/rabbit-game-block', {
             type: 'string',
             default: 'Click Me',
         },
+           contentText: {
+            type: 'string',
+            default: 'text',
+        },
         buttonStyle: {
             type: 'string',
             default: 'primary',
@@ -51,6 +55,11 @@ registerBlockType('wprg/rabbit-game-block', {
                         value: buttonText,
                         onChange: (val) => setAttributes({ buttonText: val }),
                     }),
+                      wp.element.createElement(TextControl, {
+                        label: __('Button Text', 'myplugin'),
+                        value: contentText,
+                        onChange: (val) => setAttributes({ contentText: val }),
+                    }),
                      wp.element.createElement(SelectControl, {
                         label: __('Select Game', 'myplugin'),
                         value: selectGame,
@@ -80,6 +89,12 @@ registerBlockType('wprg/rabbit-game-block', {
                     value: content,
                     onChange: (val) => setAttributes({ content: val }),
                     placeholder: __('Write something...', 'myplugin'),
+                }),
+                 wp.element.createElement(RichText, {
+                    tagName: 'p',
+                    value: contentText,
+                    onChange: (val) => setAttributes({ contentText: val }),
+                    placeholder: __('Write text something...', 'myplugin'),
                 }),
                 wp.element.createElement('p', {
                     value: selectGame,

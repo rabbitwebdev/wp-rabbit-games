@@ -73,6 +73,10 @@ function wprg_register_custom_block() {
                 'type' => 'string',
                 'default' => 'View Game',
             ),
+             'contentText' => array(
+                'type' => 'string',
+                'default' => 'text',
+            ),
         ),
     ) );
 }
@@ -94,8 +98,13 @@ function myplugin_render_select_game_block($attributes) {
         return '';
     }
 
+      if (empty($attributes['contentText'])) {
+        return '';
+    }
+
     $type = esc_attr($attributes['selectGame']);
    $buttontext = esc_attr($attributes['buttonText']);
+     $contenttext = esc_attr($attributes['contentText']);
 
     // Wrap the shortcode output in custom HTML
     $shortcode_output = do_shortcode('[' . $type . ']');
@@ -108,6 +117,7 @@ function myplugin_render_select_game_block($attributes) {
                 <div class="col-md-12">
                     <h2>Upcoming Games</h2>
                     <?php echo esc_html($buttontext); ?>
+                     <?php echo esc_html($contenttext); ?>
                 </div>
             </div>
         <div class="game-type-meta">
