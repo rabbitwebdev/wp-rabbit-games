@@ -82,12 +82,20 @@ wp_localize_script('rawg-js', 'rawgData', [
 ]);
 
 function myplugin_render_select_game_block($attributes) {
+     ob_start();
+    ?>
+      <div class="container-fluid">
+        <?php
     if (empty($attributes['selectGame'])) {
         return '';
     }
 
     $type = esc_attr($attributes['selectGame']);
     return do_shortcode('[' . $type . ']');
+    ?>
+        </div>
+    <?php
+    return ob_get_clean();
 }
 
 
