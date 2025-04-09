@@ -115,7 +115,7 @@ function myplugin_render_select_game_block($attributes) {
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h2 class="uppercase">  <?php echo esc_html($contenttext); ?></h2>
+                    <h2 class="text-uppercase">  <?php echo esc_html($contenttext); ?></h2>
                     <?php echo esc_html($buttontext); ?>
                    
                 </div>
