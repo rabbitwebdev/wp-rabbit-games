@@ -115,14 +115,11 @@ function myplugin_render_select_game_block($attributes) {
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h2>Upcoming Games</h2>
+                    <h2 class="uppercase">  <?php echo esc_html($contenttext); ?></h2>
                     <?php echo esc_html($buttontext); ?>
-                     <?php echo esc_html($contenttext); ?>
+                   
                 </div>
             </div>
-        <div class="game-type-meta">
-            <strong>Game Type:</strong> <?php echo esc_html($type); ?>
-        </div>
         <div class="game-shortcode-output">
             <?php echo $shortcode_output; ?>
         </div>

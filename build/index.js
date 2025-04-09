@@ -56,7 +56,7 @@ registerBlockType('wprg/rabbit-game-block', {
                         onChange: (val) => setAttributes({ buttonText: val }),
                     }),
                       wp.element.createElement(TextControl, {
-                        label: __('Button Text', 'myplugin'),
+                        label: __('Block Title', 'myplugin'),
                         value: contentText,
                         onChange: (val) => setAttributes({ contentText: val }),
                     }),
