@@ -69,10 +69,9 @@ function wprg_register_custom_block() {
                 'type' => 'string',
                 'default' => 'wp_rabbit_genres',
             ),
-            'content' => array(
-                'source' => 'html',
+            'buttonText' => array(
                 'type' => 'string',
-                'selector' => 'p',
+                'default' => 'View Game',
             ),
         ),
     ) );
@@ -91,8 +90,12 @@ function myplugin_render_select_game_block($attributes) {
         return '';
     }
 
+     if (empty($attributes['buttonText'])) {
+        return '';
+    }
+
     $type = esc_attr($attributes['selectGame']);
-   $content = esc_attr($attributes['content']);
+   $buttontext = esc_attr($attributes['buttonText']);
 
     // Wrap the shortcode output in custom HTML
     $shortcode_output = do_shortcode('[' . $type . ']');
@@ -104,7 +107,7 @@ function myplugin_render_select_game_block($attributes) {
             <div class="row">
                 <div class="col-md-12">
                     <h2>Upcoming Games</h2>
-                    <?php echo esc_html($content); ?>
+                    <?php echo esc_html($buttontext); ?>
                 </div>
             </div>
         <div class="game-type-meta">
@@ -169,7 +172,7 @@ function wprg_render_upcoming_games_block() {
                             Release Year:
                             <select id="release-year-filter">
                                 <?php
-                                for ($y = $currentYear; $y >= $currentYear - 10; $y--) {
+                                for ($y = $currentYear; $y >= $currentYear - 15; $y--) {
                                     echo "<option value='{$y}'>{$y}</option>";
                                 }
                                 ?>
@@ -213,13 +216,12 @@ function wpgr_render_upcoming_games_block() {
             <div class="row">
                 <div class="col-md-12">
                     <h2>Upcoming Games GR</h2>
-                    <?php echo do_shortcode( '[wp_rabbit_genres]' ); ?>
                     <div id="rawg-filters">
                         <label for="release-year-filter">
                             Release Year:
                             <select id="release-year-filter">
                                 <?php
-                                for ($y = $currentYear; $y >= $currentYear - 10; $y--) {
+                                for ($y = $currentYear; $y >= $currentYear - 15; $y--) {
                                     echo "<option value='{$y}'>{$y}</option>";
                                 }
                                 ?>

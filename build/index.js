@@ -5,7 +5,7 @@ const { __ } = wp.i18n;
 
 registerBlockType('wprg/rabbit-game-block', {
     title: 'Rabbit Game Block',
-    icon: 'admin-customizer',
+    icon: 'game',
     category: 'widgets',
     attributes: {
         content: {
