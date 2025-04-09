@@ -63,6 +63,13 @@ function wprg_register_custom_block() {
     register_block_type( 'wprg/rabbit-game-block', array(
         'editor_script' => 'wprg-block-editor-script',
         'editor_style'  => 'wprg-block-editor-style',
+        'render_callback' => 'myplugin_render_select_game_block',
+        'attributes' => array(
+            'selectGame' => array(
+                'type' => 'string',
+                'default' => 'wp_rabbit_genres',
+            ),
+        ),
     ) );
 }
 add_action( 'init', 'wprg_register_custom_block' );
@@ -73,6 +80,16 @@ wp_enqueue_script('rawg-js', plugin_dir_url(__FILE__) . 'assets/rawg.js', [], nu
 wp_localize_script('rawg-js', 'rawgData', [
     'apiKey' => get_option('wp_rabbit_games_api_key'),
 ]);
+
+function myplugin_render_select_game_block($attributes) {
+    if (empty($attributes['selectGame'])) {
+        return '';
+    }
+
+    $type = esc_attr($attributes['selectGame']);
+    return do_shortcode('[' . $type . ']');
+}
+
 
 register_block_type('wprg/upcoming-games', array(
     'editor_script' => 'wprg-block-editor-script',
