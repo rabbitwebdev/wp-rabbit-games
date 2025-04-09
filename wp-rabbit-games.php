@@ -92,7 +92,7 @@ function myplugin_render_select_game_block($attributes) {
     }
 
     $type = esc_attr($attributes['selectGame']);
-   $content = esc_html($attributes['content']);
+   $content = esc_attr($attributes['content']);
 
     // Wrap the shortcode output in custom HTML
     $shortcode_output = do_shortcode('[' . $type . ']');
@@ -104,7 +104,7 @@ function myplugin_render_select_game_block($attributes) {
             <div class="row">
                 <div class="col-md-12">
                     <h2>Upcoming Games</h2>
-                    <?php echo $content; ?>
+                    <?php echo esc_html($content); ?>
                 </div>
             </div>
         <div class="game-type-meta">
