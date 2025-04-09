@@ -169,7 +169,7 @@ function wprg_render_upcoming_games_block() {
 
     $currentYear = date('Y');
     ?>
-    <div class="rabbit-game-filter-block">
+    <div class="rabbit-game-filter-block pt-5 pb-5">
          <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
@@ -218,7 +218,7 @@ function wpgr_render_upcoming_games_block() {
 
     $currentYear = date('Y');
     ?>
-    <div class="rabbit-game-filter-block">
+    <div class="rabbit-game-filter-block pt-5 pb-5">
          <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
