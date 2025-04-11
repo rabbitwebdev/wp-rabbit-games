@@ -193,6 +193,13 @@ function wprg_render_upcoming_games_block() {
                             <!-- Filled via JS -->
                         </select>
                         </label>
+                           <label for="developer-select" style="margin-left: 20px;">
+    Developer:
+    <select id="developer-select">
+        <option value="all">All Developers</option>
+        <!-- Filled by JS -->
+    </select>
+</label>
                     </div>
                 </div>
 
