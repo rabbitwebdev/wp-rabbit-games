@@ -22,13 +22,13 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
      // Fetch developers
-    fetch(`https://api.rawg.io/api/developers?key=${apiKey}&page_size=40`) // Limit for performance
+    fetch(`https://api.rawg.io/api/developers?key=${apiKey}`) // Limit for performance
         .then(res => res.json())
         .then(data => {
-            data.results.forEach(dev => {
+            data.results.forEach(developer => {
                 const option = document.createElement("option");
-                option.value = dev.id;
-                option.textContent = dev.name;
+                option.value = developer.id;
+                option.textContent = developer.name;
                 developerSelect.appendChild(option);
             });
         });
