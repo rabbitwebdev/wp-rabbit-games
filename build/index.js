@@ -129,12 +129,34 @@ registerBlockType('wprg/upcoming-games', {
     title: 'Upcoming Games (RAWG)',
     icon: 'schedule',
     category: 'widgets',
+    attributes: {
+        content: {
+            type: 'string',
+            source: 'html',
+            selector: 'p',
+        },
+        className: {
+            type: 'string',
+            default: 'upcoming-games',
+        },
+    },
     supports: {
         html: false,
     },
-    edit: () => {
+    edit: function (props) {
+          const { attributes, setAttributes } = props;
+        const { content } = attributes;
         return (
-            wp.element.createElement('p', {}, 'Upcoming Games block (rendered on frontend).')
+             wp.element.createElement('div', { className: props.className },
+                showTitle && wp.element.createElement('h3', null, 'Title Goes Here'),
+                wp.element.createElement(RichText, {
+                    tagName: 'p',
+                    value: content,
+                    onChange: (val) => setAttributes({ content: val }),
+                    placeholder: __('Write something...', 'myplugin'),
+                }),
+                 wp.element.createElement('p', {}, 'Upcoming Games block (rendered on frontend).')
+            )
         );
     },
     save: () => {
