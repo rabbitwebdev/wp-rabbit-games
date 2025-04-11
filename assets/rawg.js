@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
       let selectedDeveloper = "all";
 
     // Fetch platforms
+     // Fetch platforms
     fetch(`https://api.rawg.io/api/platforms?key=${apiKey}`)
         .then(res => res.json())
         .then(data => {
@@ -19,7 +20,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 option.textContent = platform.name;
                 platformSelect.appendChild(option);
             });
-            fetchGames(); // Fetch after platforms loaded
         });
      // Fetch developers
     fetch(`https://api.rawg.io/api/developers?key=${apiKey}&page_size=40`) // Limit for performance
