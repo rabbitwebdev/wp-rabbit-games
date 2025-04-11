@@ -2,10 +2,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const apiKey = rawgData.apiKey;
     const yearFilter = document.getElementById("release-year-filter");
     const platformSelect = document.getElementById("platform-select");
+      const developerSelect = document.getElementById("developer-select");
     const gamesContainer = document.getElementById("upcoming-games");
 
     let selectedPlatform = "all";
     let selectedYear = yearFilter.value;
+      let selectedDeveloper = "all";
 
     // Fetch platforms
     fetch(`https://api.rawg.io/api/platforms?key=${apiKey}`)
@@ -19,6 +21,17 @@ document.addEventListener("DOMContentLoaded", () => {
             });
             fetchGames(); // Fetch after platforms loaded
         });
+     // Fetch developers
+    fetch(`https://api.rawg.io/api/developers?key=${apiKey}&page_size=40`) // Limit for performance
+        .then(res => res.json())
+        .then(data => {
+            data.results.forEach(dev => {
+                const option = document.createElement("option");
+                option.value = dev.id;
+                option.textContent = dev.name;
+                developerSelect.appendChild(option);
+            });
+        });
 
     // Event listeners
     yearFilter.addEventListener("change", () => {
@@ -28,6 +41,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     platformSelect.addEventListener("change", () => {
         selectedPlatform = platformSelect.value;
+        fetchGames();
+    });
+
+     developerSelect.addEventListener("change", () => {
+        selectedDeveloper = developerSelect.value;
         fetchGames();
     });
 
@@ -46,6 +64,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (selectedPlatform !== "all") {
             url += `&platforms=${selectedPlatform}`;
+        }
+
+         if (selectedDeveloper !== "all") {
+            url += `&developers=${selectedDeveloper}`;
         }
 
         fetch(url)

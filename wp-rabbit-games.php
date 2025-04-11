@@ -2,7 +2,7 @@
 /**
  * Plugin Name: WP Rabbit Games
  * Description: Fetch and display game details from RAWG.io using a custom post type and Gutenberg block.
- * Version: 8.0.0
+ * Version: 10.0.0
  * Author: Your Name
  */
 
@@ -242,6 +242,14 @@ function wpgr_render_upcoming_games_block() {
                             <!-- Filled via JS -->
                         </select>
                         </label>
+
+                        <label for="developer-select" style="margin-left: 20px;">
+    Developer:
+    <select id="developer-select">
+        <option value="all">All Developers</option>
+        <!-- Filled by JS -->
+    </select>
+</label>
                     </div>
                 </div>
 
