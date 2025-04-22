@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
      // Fetch developers
-    fetch(`https://api.rawg.io/api/developers?key=${apiKey}`) // Limit for performance
+    fetch(`https://api.rawg.io/api/developers?key=${apiKey}&page=1`) // Limit for performance
         .then(res => res.json())
         .then(data => {
             data.results.forEach(developer => {
