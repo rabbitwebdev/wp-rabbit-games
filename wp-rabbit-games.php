@@ -1,9 +1,11 @@
 <?php
 /**
  * Plugin Name: WP Rabbit Games
+ * Plugin URI: https://dev.rabbitwebdesign.co.uk/wp-rabbit-games
+ * Author URI: https://rabbitwebdesign.co.uk
  * Description: Fetch and display game details from RAWG.io using a custom post type and Gutenberg block.
- * Version: 10.0.0
- * Author: Your Name
+ * Version: 10.1.0
+ * Author: P York
  */
 
 // Exit if accessed directly
