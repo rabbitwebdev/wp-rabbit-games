@@ -38,12 +38,17 @@ function wp_rabbit_games_display_game($atts) {
     ob_start();
     ?>
     <div class="wp-rabbit-game">
-        <p><?php echo esc_html($game_data['released']); ?></p>
-        <h2><?php echo esc_html($game_data['name']); ?></h2>
+    <h2 class="mb-4"><?php echo esc_html($game_data['name']); ?></h2>
+        <p class="mb-4">Release: <?php echo esc_html($game_data['released']); ?></p>
+        <div class="col-lg-6">
         <img class="w-100" src="<?php echo esc_url($game_data['background_image']); ?>" alt="<?php echo esc_attr($game_data['name']); ?>">
-      
-        <p><?php echo esc_html($game_data['description_raw']); ?></p>
-          <a class="btn mt-3 mb-3 btn-outline" target="_blank" href="<?php echo esc_url($game_data['website']); ?>" >Website</a>
+</div>
+       
+        <div class="col-lg-6">
+        <p class="mb-4 mt-5"><?php echo esc_html($game_data['description_raw']); ?></p>
+        <a class="btn mt-3 mb-3 btn-secondary" target="_blank" href="<?php echo esc_url($game_data['website']); ?>" >Website</a>
+        </div>
+       
     </div>
     <?php
     return ob_get_clean();
