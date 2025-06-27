@@ -4,6 +4,20 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+function rb_bootstrap_theme_scripts() {
+
+    // CSS
+    // Bootstrap CSS
+
+    wp_enqueue_style('bootstrap-styles', 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css', array(), '5.3.7', 'all');  
+
+    // Bootstrap JavaScript
+
+    wp_enqueue_script('bootstrap-js', 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js', array('jquery'), '5.3.7', true);
+
+}
+add_action('wp_enqueue_scripts', 'rb_bootstrap_theme_scripts');
+
 
 function rabbit_api_game_load_template($template) {
     if (get_query_var('game_slug')) {
