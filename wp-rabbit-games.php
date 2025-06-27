@@ -177,7 +177,7 @@ function wprg_render_upcoming_games_block() {
                 <div class="col-md-12">
                     <h2>Upcoming Games RG</h2>
                     <div id="rawg-filters">
-                        <label for="release-year-filter">
+                        <label for="release-year-filter fs-5">
                             Release Year:
                             <select id="release-year-filter">
                                 <?php
