@@ -233,9 +233,9 @@ function wpgr_render_upcoming_games_block() {
                 <div class="col-md-12">
                     <h2 class="mb-3">Upcoming Games GR</h2>
                     <div id="rawg-filters" class="d-flex align-items-center justify-content-start fs-6">
-                        <label for="release-year-filter" class="d-flex align-items-center flex-column justify-content-start">
+                        <label for="release-year-filter" style="width:120px;" class="d-flex align-items-center flex-column justify-content-start">
                             Release Year:
-                            <select id="release-year-filter">
+                            <select id="release-year-filter" class="w-100">
                                 <?php
                                 for ($y = $currentYear; $y >= $currentYear - 15; $y--) {
                                     echo "<option value='{$y}'>{$y}</option>";
@@ -244,7 +244,7 @@ function wpgr_render_upcoming_games_block() {
                             </select>
                         </label>
 
-                        <label for="platform-select" style="margin-left: 20px;" class="d-flex align-items-center flex-column justify-content-start">
+                        <label for="platform-select" style="margin-left: 20px; width:120px;" class="d-flex align-items-center flex-column justify-content-start">
                         Platform:
                         <select id="platform-select">
                             <option value="all">All Platforms</option>
@@ -252,7 +252,7 @@ function wpgr_render_upcoming_games_block() {
                         </select>
                         </label>
 
-                        <label for="developer-select" style="margin-left: 20px;" class="d-flex align-items-center flex-column justify-content-start">
+                        <label for="developer-select" style="margin-left: 20px; width:120px;" class="d-flex align-items-center flex-column justify-content-start">
     Developer:
     <select id="developer-select">
         <option value="all">All Developers</option>
