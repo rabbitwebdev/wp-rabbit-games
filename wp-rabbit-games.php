@@ -232,8 +232,8 @@ function wpgr_render_upcoming_games_block() {
             <div class="row">
                 <div class="col-md-12">
                     <h2 class="mb-3">Upcoming Games GR</h2>
-                    <div id="rawg-filters">
-                        <label for="release-year-filter" class="d-flex align-items-center flex-direction-column">
+                    <div id="rawg-filters" class="d-flex align-items-center justify-content-start fs-6">
+                        <label for="release-year-filter" class="d-flex align-items-center flex-column">
                             Release Year:
                             <select id="release-year-filter">
                                 <?php
@@ -244,7 +244,7 @@ function wpgr_render_upcoming_games_block() {
                             </select>
                         </label>
 
-                        <label for="platform-select" style="margin-left: 20px;">
+                        <label for="platform-select" style="margin-left: 20px;" class="d-flex align-items-center flex-column">
                         Platform:
                         <select id="platform-select">
                             <option value="all">All Platforms</option>
@@ -252,7 +252,7 @@ function wpgr_render_upcoming_games_block() {
                         </select>
                         </label>
 
-                        <label for="developer-select" style="margin-left: 20px;">
+                        <label for="developer-select" style="margin-left: 20px;" class="d-flex align-items-center flex-column">
     Developer:
     <select id="developer-select">
         <option value="all">All Developers</option>
