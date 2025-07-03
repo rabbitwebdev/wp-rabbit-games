@@ -231,9 +231,9 @@ function wpgr_render_upcoming_games_block() {
          <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <h2>Upcoming Games GR</h2>
+                    <h2 class="mb-3">Upcoming Games GR</h2>
                     <div id="rawg-filters">
-                        <label for="release-year-filter">
+                        <label for="release-year-filter" class="d-flex align-items-center flex-direction-column">
                             Release Year:
                             <select id="release-year-filter">
                                 <?php

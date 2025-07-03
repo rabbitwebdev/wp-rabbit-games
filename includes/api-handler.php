@@ -243,7 +243,7 @@ function wp_rabbit_fetch_developer_games() {
         wp_die('No games found.');
     }
 
-    echo '<div class="row g-4 row-cols-md-2 row-cols-1 row-cols-sm-1">';
+    echo '<div class="row g-2 row-cols-md-2 row-cols-lg-3 row-cols-1 row-cols-sm-1">';
     foreach ($data['results'] as $game) {
          $game_slug = esc_attr($game['slug']);
          $game_url = site_url("/game-details/$game_slug/");
