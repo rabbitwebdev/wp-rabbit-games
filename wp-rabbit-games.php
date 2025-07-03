@@ -232,7 +232,7 @@ function wpgr_render_upcoming_games_block() {
             <div class="row">
                 <div class="col-md-12">
                     <h2 class="mb-3">Upcoming Games GR</h2>
-                    <div id="rawg-filters" class="d-flex align-items-center justify-content-start fs-6">
+                    <div id="rawg-filters" class="d-flex align-items-center justify-content-between fs-6">
                         <label for="release-year-filter" style="width:120px;" class="d-flex align-items-center flex-column justify-content-start">
                             Release Year:
                             <select id="release-year-filter" class="w-100">
@@ -244,17 +244,17 @@ function wpgr_render_upcoming_games_block() {
                             </select>
                         </label>
 
-                        <label for="platform-select" style="margin-left: 20px; width:120px;" class="d-flex align-items-center flex-column justify-content-start">
+                        <label for="platform-select" style="width:120px;" class="d-flex align-items-center flex-column justify-content-start">
                         Platform:
-                        <select id="platform-select">
+                        <select id="platform-select" class="w-100">
                             <option value="all">All Platforms</option>
                             <!-- Filled via JS -->
                         </select>
                         </label>
 
-                        <label for="developer-select" style="margin-left: 20px; width:120px;" class="d-flex align-items-center flex-column justify-content-start">
+                        <label for="developer-select" style="width:140px;" class="d-flex align-items-center flex-column justify-content-start">
     Developer:
-    <select id="developer-select">
+    <select id="developer-select" class="w-100">
         <option value="all">All Developers</option>
         <!-- Filled by JS -->
     </select>
