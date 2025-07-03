@@ -264,7 +264,7 @@ function wpgr_render_upcoming_games_block() {
 
             </div>
          
-                 <div id="upcoming-games" class=" game-cards cards row g-4 row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-sm-1" style="margin-top: 20px;"></div>
+                 <div id="upcoming-games" class=" game-cards cards row g-2 row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-sm-1" style="margin-top: 20px;"></div>
               </div>         
 </div>
    
